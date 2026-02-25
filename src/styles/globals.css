@@ -1,0 +1,325 @@
+:root {
+  /* Brand palette */
+  --bg: #06120c;         /* очень тёмно-зелёный (почти чёрный) */
+  --bg2: #07160f;        /* чуть светлее для градиентов */
+  --surface: #0b1f16;    /* карточки */
+  --surface2: #0f2a1d;   /* подложки */
+  --border: #173a29;     /* границы */
+
+  --text: #e8f2ea;       /* основной текст */
+  --muted: #a7b9ad;      /* вторичный текст */
+  --muted2: #7f9487;
+
+  --gold: #d4af37;       /* золото */
+  --gold2: #e3c35a;      /* золото hover */
+  --gold3: rgba(212, 175, 55, 0.14);
+
+  --radius: 10px;
+  --radius2: 24px;
+
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
+  --max: 1120px;
+
+  --ring: 0 0 0 3px rgba(212, 175, 55, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    background:
+  radial-gradient(900px 600px at 20% 0%, rgba(212,175,55,0.08), transparent 60%),
+  radial-gradient(900px 600px at 90% 10%, rgba(10,70,44,0.22), transparent 65%),
+  linear-gradient(180deg, #050f0a, #040c08);
+font-family: var(--font-body), ui-sans-serif, system-ui;
+  line-height: 1.5;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--gold);
+}
+
+/* Typography helpers */
+h1, h2, h3 {
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+  color: var(--muted2);
+}
+.gold {
+  color: var(--gold);
+}
+
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 76px 0;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+
+@media (max-width: 960px) {
+  .section {
+    padding: 56px 0;
+  }
+  .sectionTitle {
+    font-size: 24px;
+  }
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(180deg, rgba(11, 31, 22, 0.96), rgba(6, 18, 12, 0.96));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.cardSoft {
+  background: linear-gradient(180deg, rgba(15, 42, 29, 0.74), rgba(6, 18, 12, 0.74));
+  border: 1px solid rgba(23, 58, 41, 0.9);
+  border-radius: var(--radius);
+}
+
+.pad-16 { padding: 16px; }
+.pad-20 { padding: 20px; }
+.pad-24 { padding: 24px; }
+.pad-28 { padding: 28px; }
+
+/* Grid helpers */
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 960px) {
+  .grid2, .grid3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.08s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btnPrimary {
+  background: var(--gold);
+  color: #06120c;
+  border-color: rgba(212, 175, 55, 0.4);
+}
+.btnPrimary:hover {
+  background: var(--gold2);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--gold);
+  border-color: rgba(23, 58, 41, 1);
+}
+.btnSecondary:hover {
+  border-color: rgba(212, 175, 55, 0.8);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--text);
+  border-color: transparent;
+}
+.btnGhost:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Focus */
+:where(button, a, input, textarea) {
+  outline: none;
+}
+:where(button, a, input, textarea):focus-visible {
+  box-shadow: var(--ring);
+  border-color: rgba(212, 175, 55, 0.55);
+}
+
+/* Inputs */
+.input, .textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(23, 58, 41, 0.95);
+  background: rgba(15, 42, 29, 0.62);
+  color: var(--text);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.textarea { resize: vertical; }
+.input::placeholder, .textarea::placeholder { color: rgba(167, 185, 173, 0.75); }
+.input:hover, .textarea:hover { border-color: rgba(212, 175, 55, 0.35); }
+
+/* Divider */
+.hr {
+  height: 1px;
+  background: rgba(23, 58, 41, 0.95);
+  border: 0;
+  margin: 18px 0;
+}
+
+/* Badge / pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(23, 58, 41, 0.95);
+  color: var(--muted);
+  font-size: 12px;
+  background: rgba(15, 42, 29, 0.4);
+}
+.pillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+/* Subtle highlight */
+.glow {
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.10), 0 20px 70px rgba(212, 175, 55, 0.08);
+}
+
+/* Utility */
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+
+/* ===== Header ===== */
+.siteHeader{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  background: rgba(6,18,12,0.78);
+  backdrop-filter: blur(10px);
+}
+.headerInner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brandMark{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(212,175,55,0.18);
+  background: rgba(212,175,55,0.06);
+}
+.brandMarkLetter{
+  color: var(--gold);
+  font-weight:800;
+  letter-spacing:.5px;
+}
+.brandText{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+}
+.brandName{
+  color: var(--text);
+  font-weight:700;
+}
+.headerNav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.headerNavLink{
+  font-size:12px;
+  color: var(--muted);
+  padding:8px 6px;
+}
+.headerNavLink:hover{ color: var(--text); }
+.headerActions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+@media (max-width:960px){
+  .headerNav{ display:none; }
+}
+@media (max-width:520px){
+  .hideOnSmall{ display:none; }
+}
+
+/* ===== Ticker ===== */
+.tickerTrack{
+  display:flex;
+  gap:24px;
+  white-space:nowrap;
+  animation: ticker 20s linear infinite;
+}
+@keyframes ticker{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
