@@ -1,38 +1,47 @@
+"use client";
+
 import Link from "next/link";
-import Button from "@/components/ui/Button";
-import { brand, nav, links } from "@/lib/constants";
+import { useState } from "react";
+import ContactModal from "@/components/ui/ContactModal";
+import { waLink } from "@/lib/whatsapp";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  const demoText = "Здравствуйте! Хочу получить демо AMAN GROUP. Подскажите, как начать?";
+  const auditText = "Здравствуйте! Хочу бесплатный аудит процессов. Коротко: опишите, что нужно от меня.";
+
   return (
-    <header className="siteHeader">
-      <div className="container headerInner">
-        <Link href={links.home} className="brand">
-          <div className="brandMark">
-            <span className="brandMarkLetter">A</span>
-          </div>
-          <div className="brandText">
-            <span className="brandName">{brand.name}</span>
-            <span className="small">{brand.tagline}</span>
-          </div>
-        </Link>
+    <>
+      <header className="siteHeader">
+        <div className="headerInner">
+          <Link href="/" className="brand">
+            <div className="brandMark">A</div>
+            <div className="brandText">
+              <div className="brandName">AMAN GROUP</div>
+              <div className="brandSub">AI workforce solutions для повышения эффективности</div>
+            </div>
+          </Link>
 
-        <nav className="headerNav">
-          {nav.slice(0, 6).map((x) => (
-            <Link key={x.href} href={x.href} className="headerNavLink">
-              {x.label}
-            </Link>
-          ))}
-        </nav>
+          <nav className="headerNav">
+            <a className="headerNavLink" href="#solutions">Решения</a>
+            <a className="headerNavLink" href="#benefits">Преимущества</a>
+            <a className="headerNavLink" href="#value">Ценность</a>
+            <a className="headerNavLink" href="#services">Услуги</a>
+            <a className="headerNavLink" href="#faq">FAQ</a>
+          </nav>
 
-        <div className="headerActions">
-          <Button href={links.login} variant="ghost" className="hideOnSmall">
-            Войти
-          </Button>
-          <Button href={links.contact} variant="primary">
-            Получить демо
-          </Button>
+          <div className="headerActions">
+            <button className="btnLink" onClick={() => setOpen(true)}>Войти</button>
+
+            <a className="btnPrimary" href={waLink(demoText)} target="_blank" rel="noreferrer">
+              Получить демо
+            </a>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <ContactModal open={open} onClose={() => setOpen(false)} />
+    </>
   );
 }
